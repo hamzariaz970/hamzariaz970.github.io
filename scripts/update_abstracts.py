@@ -4,14 +4,11 @@ import argparse
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from html.parser import HTMLParser
-from io import BytesIO
 import json
 from pathlib import Path
 import re
 from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
-
-from pypdf import PdfReader
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -26,8 +23,7 @@ PAPERS = {
     },
     "triage": {
         "title": "Accuracy Is Not Safety: Ordinal, Calibrated Multimodal Prediction of KTAS Triage Levels",
-        "kind": "pdf",
-        "api": "https://drive.google.com/uc?export=download&id=1Mvf5Zgpgp6ZcPXqHpdKvtK7r3QddKdOM",
+        "kind": "manual",
         "source_name": "Manuscript",
         "source_url": "https://drive.google.com/file/d/1Mvf5Zgpgp6ZcPXqHpdKvtK7r3QddKdOM/view",
     },
@@ -75,25 +71,6 @@ def clean_text(text):
     return "\n\n".join(" ".join(part.split()) for part in paragraphs if part.strip())
 
 
-def clean_pdf_text(text):
-    # Retain real compound words while joining words split across printed lines.
-    prefixes = {
-        "under", "over", "cross", "high", "low", "single", "severe",
-        "expert", "class", "patient", "resource", "modality", "well",
-        "self", "non", "few", "task", "data", "knowledge", "decision",
-    }
-
-    def join_word(match):
-        left, right = match.groups()
-        hyphen = "-" if left.lower() in prefixes else ""
-        return left + hyphen + right
-
-    text = re.sub(r"([A-Za-z]+)-[ \t]*\n[ \t]*([a-z]+)", join_word, text)
-    text = re.sub(r"(?<=[A-Za-z])(?=\d+\s*×)", " ", text)
-    text = re.sub(r"(\d)\s*×\s*(\d)", r"\1 × \2", text)
-    return " ".join(text.replace("\u00ad", "").split())
-
-
 def parse_abstract(paper, raw):
     if paper["kind"] == "crossref":
         message = json.loads(raw)["message"]
@@ -108,20 +85,7 @@ def parse_abstract(paper, raw):
         title = entry.findtext(f"{ATOM}title", "")
         abstract = clean_text(entry.findtext(f"{ATOM}summary", ""))
     else:
-        if not raw.startswith(b"%PDF"):
-            raise ValueError("The manuscript link did not return a PDF")
-        reader = PdfReader(BytesIO(raw))
-        text = "\n".join(page.extract_text(extraction_mode="layout") for page in reader.pages[:4])
-        if title_key(paper["title"]) not in title_key(text):
-            raise ValueError("The PDF title does not match the requested paper")
-        title = paper["title"]
-        match = re.search(
-            r"(?:^|\n)\s*Abstract\s*\n(.*?)(?=\n\s*(?:Keywords|Key words|1[.\s]+Introduction))",
-            text, re.IGNORECASE | re.DOTALL,
-        )
-        if not match:
-            raise ValueError("Could not locate the complete PDF abstract")
-        abstract = clean_pdf_text(match.group(1))
+        raise ValueError("Unsupported automatic abstract source")
     if title_key(title) != title_key(paper["title"]):
         raise ValueError("The source returned a different paper")
     if not 100 <= len(abstract) <= 12_000:
@@ -155,7 +119,16 @@ def valid_cache(record, paper):
 def refresh(saved):
     updated = {}
     with ThreadPoolExecutor(max_workers=3) as executor:
-        pending = {paper_id: executor.submit(fetch_abstract, (paper_id, paper)) for paper_id, paper in PAPERS.items()}
+        pending = {}
+        for paper_id, paper in PAPERS.items():
+            if paper["kind"] == "manual":
+                record = saved.get(paper_id)
+                if not valid_cache(record, paper):
+                    raise ValueError(f"No usable manual abstract for {paper_id}")
+                updated[paper_id] = record
+                print(f"Keeping the manually saved abstract for {paper_id}")
+            else:
+                pending[paper_id] = executor.submit(fetch_abstract, (paper_id, paper))
         for paper_id, future in pending.items():
             try:
                 _, updated[paper_id] = future.result()
@@ -179,6 +152,8 @@ def main():
         try:
             published = json.loads(download(args.published_cache))["papers"]
             for paper_id, paper in PAPERS.items():
+                if paper["kind"] == "manual":
+                    continue
                 record = published.get(paper_id)
                 local = saved.get(paper_id, {})
                 if valid_cache(record, paper) and record["retrieved_at"] > local.get("retrieved_at", ""):
