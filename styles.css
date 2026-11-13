@@ -139,7 +139,7 @@ details p { margin-top: 12px; font-size: 14px; color: var(--muted); max-width: 9
 .tools { margin-top: 28px; }
 .tools h3 { font-size: 13px; font-weight: 600; }
 .tools p { font-size: 13px; color: var(--muted); margin-top: 9px; line-height: 2; }
-.timeline { list-style: none; padding: 0 0 0 24px; margin: 0; border-left: 1px solid #dcd6e5; }
+.timeline { list-style: none; padding: 0 0 0 24px; margin: 0; border-left: 1px solid #dcd6e5; align-self: start; }
 .timeline li { position: relative; padding: 0 0 32px 6px; }
 .timeline li:last-child { padding-bottom: 0; }
 .timeline li::before { content: ""; position: absolute; width: 9px; height: 9px; background: #c9badb; border: 3px solid var(--paper); box-sizing: content-box; border-radius: 50%; left: -32px; top: 4px; }
