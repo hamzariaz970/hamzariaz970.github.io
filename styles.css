@@ -232,7 +232,6 @@ details p { margin-top: 12px; font-size: 14px; color: var(--muted); max-width: 9
 .education-grades > div { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 8px; }
 .education-grades dt { color: var(--education-text); }
 .education-grades dd { min-width: 34px; margin: 0; padding: 2px 7px; text-align: center; border-radius: 6px; background: var(--surface); font-size: 12px; font-weight: 600; }
-.education-subjects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; list-style: none; border-top: 1px solid var(--education-line); padding: 16px 0 0; margin: 18px 0 0; color: var(--education-text); font-size: 13px; }
 .tools { margin-top: 28px; }
 .tools h3 { font-size: 13px; font-weight: 600; }
 .tools p { font-size: 13px; color: var(--muted); margin-top: 9px; line-height: 2; }
