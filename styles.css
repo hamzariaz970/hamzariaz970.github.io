@@ -208,11 +208,31 @@ details p { margin-top: 12px; font-size: 14px; color: var(--muted); max-width: 9
 .more-projects a:hover { text-decoration: underline; }
 .background-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 85px; margin-top: 36px; }
 .about-column > p { color: var(--muted); font-size: 15px; line-height: 1.9; }
-.education-card { border-radius: var(--radius); background: var(--education-background); padding: 26px; margin-top: 28px; }
-.education-card .eyebrow { font-size: 10px; color: var(--education-label); }
-.education-card h3 { margin-top: 10px; font-size: 18px; font-weight: 600; }
-.education-card p { font-size: 13px; margin-top: 6px; }
-.education-card .education-detail { border-top: 1px solid var(--education-line); margin-top: 18px; padding-top: 16px; font-size: 12px; color: var(--education-text); }
+.education-section { margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--line); }
+.education-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 20px; }
+.education-heading h3 { font: 400 26px/1.3 Georgia, "Times New Roman", serif; letter-spacing: -.5px; }
+.education-heading p { margin-top: 5px; color: var(--muted); font-size: 12px; }
+.education-controls { display: flex; gap: 8px; }
+.education-controls button { width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); font-size: 21px; }
+.education-controls button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent-strong); }
+.education-controls button:disabled { opacity: .35; cursor: default; }
+.education-list { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 40px) / 3); gap: 20px; list-style: none; padding: 4px 2px 12px; margin: 0; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: thin; scrollbar-color: var(--accent) var(--line); }
+.education-list:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: var(--radius); }
+.education-card { min-width: 0; border: 1px solid var(--education-line); border-radius: var(--radius); background: var(--education-background); padding: 26px; scroll-snap-align: start; }
+.education-card[data-tone="lilac"] { background: var(--featured-background); --education-label: var(--accent-strong); --education-text: var(--muted); --education-line: var(--featured-border); }
+.education-card[data-tone="peach"] { background: var(--portrait-background); --education-label: var(--portrait-note); --education-text: var(--portrait-note); --education-line: var(--line); }
+.education-card .education-date { color: var(--education-label); font-size: 11px; letter-spacing: .7px; margin: 0 0 12px; }
+.education-card h4 { margin: 0; font-size: 19px; font-weight: 600; line-height: 1.4; letter-spacing: -.3px; }
+.education-card .education-school { color: var(--education-text); font-size: 13px; margin-top: 7px; }
+.education-result { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-top: 24px; color: var(--education-text); font-size: 12px; }
+.education-result strong { color: var(--ink); font-size: 22px; font-weight: 600; white-space: nowrap; }
+.education-result small { color: var(--education-text); font-size: 12px; font-weight: 400; }
+.education-card .education-detail { border-top: 1px solid var(--education-line); margin-top: 18px; padding-top: 16px; font-size: 13px; color: var(--education-text); }
+.education-grades { margin: 20px 0 0; padding-top: 10px; border-top: 1px solid var(--education-line); font-size: 13px; }
+.education-grades > div { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 8px; }
+.education-grades dt { color: var(--education-text); }
+.education-grades dd { min-width: 34px; margin: 0; padding: 2px 7px; text-align: center; border-radius: 6px; background: var(--surface); font-size: 12px; font-weight: 600; }
+.education-subjects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; list-style: none; border-top: 1px solid var(--education-line); padding: 16px 0 0; margin: 18px 0 0; color: var(--education-text); font-size: 13px; }
 .tools { margin-top: 28px; }
 .tools h3 { font-size: 13px; font-weight: 600; }
 .tools p { font-size: 13px; color: var(--muted); margin-top: 9px; line-height: 2; }
@@ -247,6 +267,7 @@ details p { margin-top: 12px; font-size: 14px; color: var(--muted); max-width: 9
   .header-inner { gap: 18px; }
   #main-nav { gap: 19px; }
   .background-grid { gap: 45px; }
+  .education-list { grid-auto-columns: calc((100% - 20px) / 2); }
   .hero-actions { gap: 9px; }
   .button { padding-inline: 14px; }
 }
@@ -293,6 +314,8 @@ details p { margin-top: 12px; font-size: 14px; color: var(--muted); max-width: 9
   .project-card { padding: 24px; }
   .more-projects { gap: 13px; flex-direction: column; align-items: flex-start; }
   .background-grid { grid-template-columns: 1fr; gap: 40px; margin-top: 24px; }
+  .education-list { grid-auto-columns: 100%; }
+  .education-card { padding: 24px; }
   .contact-section { grid-template-columns: 1fr; padding: 30px 26px; gap: 28px; border-radius: 20px; }
   .contact-section h2 { font-size: 30px; }
   .email-link { font-size: 16px; }
@@ -311,4 +334,7 @@ details p { margin-top: 12px; font-size: 14px; color: var(--muted); max-width: 9
   .section { padding-block: 35px; }
   .project-card, .publication, .timeline li { break-inside: avoid; }
   .contact-section { margin-top: 25px; }
+  .education-controls { display: none !important; }
+  .education-list { grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: visible; }
+  .education-card { break-inside: avoid; }
 }

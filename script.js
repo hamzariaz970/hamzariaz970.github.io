@@ -88,6 +88,42 @@ if ('IntersectionObserver' in window) {
   document.querySelectorAll('main > section[id]').forEach(section => observer.observe(section));
 }
 
+const educationList = document.querySelector('#education-list');
+const educationControls = document.querySelector('.education-controls');
+
+if (educationList && educationControls) {
+  // Sort by completion year so new qualifications appear first.
+  const cards = [...educationList.children].sort((a, b) => Number(b.dataset.year) - Number(a.dataset.year));
+  educationList.append(...cards);
+  const newerButton = educationControls.querySelector('[data-direction="-1"]');
+  const olderButton = educationControls.querySelector('[data-direction="1"]');
+
+  function updateEducationControls() {
+    const remaining = educationList.scrollWidth - educationList.clientWidth;
+    educationControls.hidden = remaining <= 2;
+    newerButton.disabled = educationList.scrollLeft <= 2;
+    olderButton.disabled = educationList.scrollLeft >= remaining - 2;
+  }
+
+  educationControls.addEventListener('click', event => {
+    const button = event.target.closest('button[data-direction]');
+    if (!button) return;
+    const cardWidth = educationList.firstElementChild.getBoundingClientRect().width;
+    const gap = parseFloat(getComputedStyle(educationList).columnGap);
+    educationList.scrollBy({
+      left: Number(button.dataset.direction) * (cardWidth + gap),
+      behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+    });
+  });
+  educationList.addEventListener('scroll', updateEducationControls, { passive: true });
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(updateEducationControls).observe(educationList);
+  } else {
+    window.addEventListener('resize', updateEducationControls);
+  }
+  updateEducationControls();
+}
+
 const abstractDialog = document.querySelector('#abstract-dialog');
 const abstractTitle = document.querySelector('#abstract-title');
 const abstractBody = abstractDialog.querySelector('.abstract-body');
