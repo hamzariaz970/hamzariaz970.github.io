@@ -1,5 +1,29 @@
 document.documentElement.classList.add('js');
 
+const themeButton = document.querySelector('.theme-toggle');
+const themeLabel = themeButton.querySelector('.theme-label');
+const themeColor = document.querySelector('meta[name="theme-color"]');
+
+function applyTheme(theme) {
+  const isDark = theme === 'dark';
+  document.documentElement.dataset.theme = theme;
+  themeLabel.textContent = isDark ? 'Light' : 'Dark';
+  const label = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+  themeButton.setAttribute('aria-label', label);
+  themeButton.title = label;
+  themeColor.content = isDark ? '#17191f' : '#faf9f6';
+}
+
+applyTheme(document.documentElement.dataset.theme || 'light');
+themeButton.hidden = false;
+themeButton.addEventListener('click', () => {
+  const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  applyTheme(theme);
+  try { localStorage.setItem('theme', theme); } catch {
+    // The toggle still works when the browser cannot save a preference.
+  }
+});
+
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#main-nav');
 
@@ -9,10 +33,11 @@ function closeMenu() {
 }
 
 menuButton.hidden = false;
-menuButton.addEventListener('click', () => {
+menuButton.addEventListener('click', event => {
   const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
   menuButton.setAttribute('aria-expanded', String(!isOpen));
   navigation.classList.toggle('is-open', !isOpen);
+  if (!isOpen && event.detail === 0) navigation.querySelector('a').focus();
 });
 
 navigation.addEventListener('click', event => {
