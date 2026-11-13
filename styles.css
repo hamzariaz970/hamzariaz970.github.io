@@ -153,10 +153,29 @@ h2 { font: 400 clamp(29px, 3vw, 37px)/1.25 Georgia, "Times New Roman", serif; le
 .venue { font-size: 13px; color: var(--muted); margin-top: 5px; }
 .equal-contribution { display: inline-block; margin-left: 14px; font-size: 11px; }
 .paper-description { margin-top: 17px; font-size: 15px; line-height: 1.8; max-width: 950px; }
-.publication-links { display: flex; flex-wrap: wrap; gap: 23px; margin-top: 20px; font-size: 13px; font-weight: 550; color: var(--accent-strong); }
+.publication-links { display: flex; align-items: center; flex-wrap: wrap; gap: 23px; margin-top: 20px; font-size: 13px; font-weight: 550; color: var(--accent-strong); }
 .publication-links a { text-decoration: none; padding-block: 3px; }
 .publication-links a:hover { text-decoration: underline; }
 .publication-links span { margin-left: 4px; }
+.abstract-button { min-height: 38px; padding: 6px 12px; border: 1px solid transparent; border-radius: 8px; background: var(--lilac); color: #594872; font: inherit; }
+.abstract-button:hover { border-color: #8e7baf; }
+.abstract-dialog { width: min(680px, calc(100% - 32px)); max-height: min(82vh, 760px); padding: 0; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); color: var(--ink); box-shadow: 0 24px 80px #00000030; }
+.abstract-dialog[open] { display: flex; flex-direction: column; }
+.abstract-dialog::backdrop { background: #171320a6; backdrop-filter: blur(3px); }
+body.abstract-open { overflow: hidden; }
+.abstract-header { display: flex; align-items: flex-start; gap: 20px; padding: 26px 28px 22px; border-bottom: 1px solid var(--line); flex-shrink: 0; }
+.abstract-header > div { flex: 1; min-width: 0; }
+.abstract-header .eyebrow { color: var(--accent); font-size: 10px; margin-bottom: 10px; }
+.abstract-header h2 { font-size: 23px; line-height: 1.4; letter-spacing: -.4px; }
+.abstract-close { display: grid; place-items: center; width: 44px; height: 44px; flex-shrink: 0; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--ink); font-size: 27px; line-height: 1; }
+.abstract-close:hover { border-color: var(--accent); color: var(--accent); }
+.abstract-body { min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 22px 28px; font-size: 15px; line-height: 1.85; color: var(--ink); }
+.abstract-body:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; }
+#abstract-status { color: var(--muted); }
+#abstract-copy p + p { margin-top: 16px; }
+.abstract-footer { padding: 16px 28px; border-top: 1px solid var(--line); flex-shrink: 0; font-size: 13px; color: var(--accent-strong); }
+.abstract-footer a { text-decoration: none; }
+.abstract-footer a:hover { text-decoration: underline; }
 .research-detail { margin-top: 20px; border-top: 1px solid var(--line); }
 summary { display: flex; align-items: center; justify-content: space-between; gap: 15px; list-style: none; font-size: 12px; color: var(--muted); padding-top: 15px; }
 summary::-webkit-details-marker { display: none; }
@@ -259,6 +278,11 @@ details p { margin-top: 12px; font-size: 14px; color: var(--muted); max-width: 9
   .section-intro { margin-top: 18px; font-size: 15px; margin-bottom: 27px; }
   h2 { font-size: 31px; }
   .publication { padding: 23px 23px 18px; }
+  .abstract-dialog { max-height: 88dvh; }
+  .abstract-header { gap: 12px; padding: 20px 18px 18px; }
+  .abstract-header h2 { font-size: 19px; }
+  .abstract-body { padding: 18px; font-size: 14px; }
+  .abstract-footer { padding: 14px 18px; }
   .publication h3 { font-size: 18px; }
   .publication-area { flex-basis: 100%; margin-left: 0; font-size: 11px; }
   .publication-meta { gap: 8px 12px; }
@@ -282,7 +306,7 @@ details p { margin-top: 12px; font-size: 14px; color: var(--muted); max-width: 9
 @media print {
   .site-header { position: static; }
   .wrap { width: 100%; }
-  .header-actions, .project-filters, .site-footer { display: none !important; }
+  .header-actions, .project-filters, .site-footer, .abstract-button, .abstract-dialog { display: none !important; }
   .hero { padding-block: 30px; gap: 35px; grid-template-columns: 1fr 220px; }
   .section { padding-block: 35px; }
   .project-card, .publication, .timeline li { break-inside: avoid; }

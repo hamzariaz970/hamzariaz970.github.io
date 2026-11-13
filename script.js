@@ -88,4 +88,82 @@ if ('IntersectionObserver' in window) {
   document.querySelectorAll('main > section[id]').forEach(section => observer.observe(section));
 }
 
+const abstractDialog = document.querySelector('#abstract-dialog');
+const abstractTitle = document.querySelector('#abstract-title');
+const abstractBody = abstractDialog.querySelector('.abstract-body');
+const abstractStatus = document.querySelector('#abstract-status');
+const abstractCopy = document.querySelector('#abstract-copy');
+const abstractPaperLink = document.querySelector('#abstract-paper-link');
+let abstractRequest;
+let activeAbstract = 0;
+
+function loadAbstracts() {
+  if (!abstractRequest) {
+    abstractRequest = fetch('assets/abstracts.json', { cache: 'no-cache' })
+      .then(response => {
+        if (!response.ok) throw new Error('Abstracts could not be loaded');
+        return response.json();
+      })
+      .catch(error => {
+        abstractRequest = null;
+        throw error;
+      });
+  }
+  return abstractRequest;
+}
+
+async function openAbstract(button) {
+  const paperId = button.dataset.abstract;
+  const titleLink = button.closest('.publication').querySelector('h3 a');
+  const requestId = ++activeAbstract;
+  abstractTitle.textContent = titleLink.textContent;
+  abstractPaperLink.href = titleLink.href;
+  abstractCopy.replaceChildren();
+  abstractCopy.hidden = true;
+  abstractStatus.hidden = false;
+  abstractStatus.textContent = 'Loading abstract…';
+  abstractBody.setAttribute('aria-busy', 'true');
+  abstractBody.scrollTop = 0;
+  document.body.classList.add('abstract-open');
+  abstractDialog.showModal();
+  try {
+    const data = await loadAbstracts();
+    if (!abstractDialog.open || activeAbstract !== requestId) return;
+    const paper = data.papers[paperId];
+    if (!paper || typeof paper.abstract !== 'string' || !paper.abstract.trim()) {
+      throw new Error('Abstract missing');
+    }
+    for (const text of paper.abstract.split(/\n\s*\n/)) {
+      const paragraph = document.createElement('p');
+      paragraph.textContent = text;
+      abstractCopy.append(paragraph);
+    }
+    abstractCopy.hidden = false;
+    abstractStatus.hidden = true;
+  } catch {
+    if (abstractDialog.open && activeAbstract === requestId) {
+      abstractStatus.textContent = 'The abstract could not be loaded. You can still read it in the full paper below.';
+    }
+  } finally {
+    if (activeAbstract === requestId) abstractBody.setAttribute('aria-busy', 'false');
+  }
+}
+
+if (typeof abstractDialog.showModal === 'function') {
+  document.querySelectorAll('.abstract-button').forEach(button => {
+    button.hidden = false;
+    button.addEventListener('click', () => openAbstract(button));
+  });
+  abstractDialog.querySelector('.abstract-close').addEventListener('click', () => abstractDialog.close());
+  abstractDialog.addEventListener('click', event => {
+    const box = abstractDialog.getBoundingClientRect();
+    const outside = event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom;
+    if (event.target === abstractDialog && outside) abstractDialog.close();
+  });
+  abstractDialog.addEventListener('close', () => {
+    activeAbstract += 1;
+    document.body.classList.remove('abstract-open');
+  });
+}
+
 document.querySelector('#year').textContent = new Date().getFullYear();

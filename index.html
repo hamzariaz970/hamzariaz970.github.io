@@ -26,8 +26,8 @@
         : prefersDark ? 'dark' : 'light';
     })();
   </script>
-  <link rel="stylesheet" href="styles.css?v=2">
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v=3">
+  <script src="script.js?v=2" defer></script>
   <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"Person","name":"Hamza Riaz","url":"https://hamzariaz970.github.io/","image":"https://hamzariaz970.github.io/assets/hamza-riaz.jpg","email":"mailto:hamzariaz999@gmail.com","alumniOf":{"@type":"CollegeOrUniversity","name":"National University of Sciences and Technology"},"sameAs":["https://github.com/hamzariaz970","https://www.linkedin.com/in/hamzariaz970/","https://scholar.google.com/citations?user=5EgASuIAAAAJ"]}
   </script>
@@ -98,7 +98,7 @@
           <p class="authors"><strong>Hamza Riaz</strong> and Mihai Surdeanu</p>
           <p class="venue">ACL Rolling Review, October 2026 cycle. Planned commitment to NAACL 2027.</p>
           <p class="paper-description">Distilling an LLM’s knowledge through offline paraphrase generation into reusable symbolic rules, then classifying new sentences with a dependency parser and deterministic matching.</p>
-          <div class="publication-links"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7686659">Read manuscript <span aria-hidden="true">↗</span></a></div>
+          <div class="publication-links"><button class="abstract-button" type="button" data-abstract="clu" aria-haspopup="dialog" aria-controls="abstract-dialog" hidden>Read abstract</button><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7686659">Read manuscript <span aria-hidden="true">↗</span></a></div>
           <details class="research-detail"><summary>How the method works <span aria-hidden="true">+</span></summary><p>A multi-pass sieve starts with exact dependency-path matches and progressively relaxes syntactic constraints when stricter sieves find no match. Entity-type and lemma checks retain semantic information, and a Jaccard filter rejects weak candidates. The rules can be reused without calling an LLM for each prediction.</p></details>
         </article>
 
@@ -108,7 +108,7 @@
           <p class="authors">Saim Kaleem*, <strong>Hamza Riaz*</strong>, Muhammad Naseer Bajwa, and Muhammad Moazam Fraz</p>
           <p class="venue">Artificial Intelligence in Medicine <span class="equal-contribution">* Equal contribution</span></p>
           <p class="paper-description">Combining written complaints and clinical measurements for emergency triage, with class weighting, ordinal training objectives, calibration assessment, and selective prediction.</p>
-          <div class="publication-links"><a href="https://drive.google.com/file/d/1Mvf5Zgpgp6ZcPXqHpdKvtK7r3QddKdOM/view?usp=sharing">Read manuscript <span aria-hidden="true">↗</span></a><a href="https://github.com/Saim-Kaleem/KTAS-Medical-Triage">Code <span aria-hidden="true">↗</span></a></div>
+          <div class="publication-links"><button class="abstract-button" type="button" data-abstract="triage" aria-haspopup="dialog" aria-controls="abstract-dialog" hidden>Read abstract</button><a href="https://drive.google.com/file/d/1Mvf5Zgpgp6ZcPXqHpdKvtK7r3QddKdOM/view?usp=sharing">Read manuscript <span aria-hidden="true">↗</span></a><a href="https://github.com/Saim-Kaleem/KTAS-Medical-Triage">Code <span aria-hidden="true">↗</span></a></div>
           <details class="research-detail"><summary>What I worked on <span aria-hidden="true">+</span></summary><p>I co-developed a model that projects complaint text and clinical measurements separately before fusion. The work examines how training objectives account for class imbalance and the ordering of urgency levels, with attention to calibration and performance on critical cases.</p></details>
         </article>
 
@@ -118,7 +118,7 @@
           <p class="authors"><strong>Hamza Riaz</strong>, Arham Haroon, Maha Baig, Muhammad Dawood Rizwan, Muhammad Naseer Bajwa, and Muhammad Moazam Fraz</p>
           <p class="venue">International Conference on Robotics and Automation in Industry (ICRAI), IEEE</p>
           <p class="paper-description">A four-agent chest X-ray reporting system that uses current-image evidence and knowledge graphs to support diagnostic statements, with retrieved reports guiding wording and structure.</p>
-          <div class="publication-links"><a href="https://doi.org/10.1109/ICRAI70912.2026.11551956">Paper <span aria-hidden="true">↗</span></a><a href="https://arxiv.org/abs/2606.14766">arXiv <span aria-hidden="true">↗</span></a><a href="https://github.com/hamzariaz970/XMedFusion">Code <span aria-hidden="true">↗</span></a><a href="https://x-med-fusion.vercel.app/">Project site <span aria-hidden="true">↗</span></a></div>
+          <div class="publication-links"><button class="abstract-button" type="button" data-abstract="xmedfusion" aria-haspopup="dialog" aria-controls="abstract-dialog" hidden>Read abstract</button><a href="https://doi.org/10.1109/ICRAI70912.2026.11551956">Paper <span aria-hidden="true">↗</span></a><a href="https://arxiv.org/abs/2606.14766">arXiv <span aria-hidden="true">↗</span></a><a href="https://github.com/hamzariaz970/XMedFusion">Code <span aria-hidden="true">↗</span></a><a href="https://x-med-fusion.vercel.app/">Project site <span aria-hidden="true">↗</span></a></div>
           <details class="research-detail"><summary>What I worked on <span aria-hidden="true">+</span></summary><p>I built anatomy-linked knowledge graphs of present and absent findings and a consistency gate for conflicting regional detections. ReAct checks draft reports against the image and graph so unsupported statements can be revised.</p></details>
         </article>
       </div>
@@ -201,6 +201,20 @@
       <div class="contact-profiles"><a href="https://scholar.google.com/citations?user=5EgASuIAAAAJ">Google Scholar <span aria-hidden="true">↗</span></a><a href="https://github.com/hamzariaz970">GitHub <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/hamzariaz970/">LinkedIn <span aria-hidden="true">↗</span></a></div>
     </section>
   </main>
+  <dialog id="abstract-dialog" class="abstract-dialog" aria-labelledby="abstract-title">
+    <div class="abstract-header">
+      <div><p class="eyebrow">Abstract</p><h2 id="abstract-title"></h2></div>
+      <button class="abstract-close" type="button" aria-label="Close abstract" autofocus><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="abstract-body" role="region" aria-label="Abstract text" tabindex="0" aria-busy="false">
+      <p id="abstract-status" role="status"></p>
+      <div id="abstract-copy" hidden></div>
+    </div>
+    <div class="abstract-footer">
+      <a id="abstract-paper-link" target="_blank" rel="noopener">Read full paper <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+    </div>
+  </dialog>
+
   <footer class="site-footer wrap"><p>© <span id="year">2026</span> Hamza Riaz <span class="footer-divider">·</span> Last updated November 2026</p><a href="#home">Back to top <span aria-hidden="true">↑</span></a></footer>
 </body>
 </html>
