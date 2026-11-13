@@ -26,8 +26,8 @@
         : prefersDark ? 'dark' : 'light';
     })();
   </script>
-  <link rel="stylesheet" href="styles.css?v=6">
-  <script src="script.js?v=3" defer></script>
+  <link rel="stylesheet" href="styles.css?v=7">
+  <script src="script.js?v=4" defer></script>
   <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"Person","name":"Hamza Riaz","url":"https://hamzariaz970.github.io/","image":"https://hamzariaz970.github.io/assets/hamza-riaz.jpg","email":"mailto:hamzariaz999@gmail.com","alumniOf":{"@type":"CollegeOrUniversity","name":"National University of Sciences and Technology"},"sameAs":["https://github.com/hamzariaz970","https://www.linkedin.com/in/hamzariaz970/","https://scholar.google.com/citations?user=5EgASuIAAAAJ"]}
   </script>
@@ -208,6 +208,7 @@
             <p class="education-school">NUST, Islamabad</p>
             <div class="education-result"><span>CGPA</span><strong>3.64 <small>/ 4.0</small></strong></div>
             <p class="education-detail">Merit-based scholarship, Fall 2024<br>Top 10 in batch</p>
+            <button class="button secondary transcript-button" type="button" aria-haspopup="dialog" aria-controls="transcript-dialog" hidden>Show transcript <span aria-hidden="true">↗</span></button>
           </li>
           <li class="education-card" data-year="2021" data-tone="lilac">
             <p class="education-date">2019–2021</p>
@@ -244,17 +245,218 @@
       <div class="contact-profiles"><a href="https://scholar.google.com/citations?user=5EgASuIAAAAJ">Google Scholar <span aria-hidden="true">↗</span></a><a href="https://github.com/hamzariaz970">GitHub <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/hamzariaz970/">LinkedIn <span aria-hidden="true">↗</span></a></div>
     </section>
   </main>
-  <dialog id="abstract-dialog" class="abstract-dialog" aria-labelledby="abstract-title">
-    <div class="abstract-header">
+  <dialog id="abstract-dialog" class="content-dialog" aria-labelledby="abstract-title">
+    <div class="dialog-header">
       <div><p class="eyebrow">Abstract</p><h2 id="abstract-title"></h2></div>
-      <button class="abstract-close" type="button" aria-label="Close abstract" autofocus><span aria-hidden="true">×</span></button>
+      <button class="dialog-close" type="button" aria-label="Close abstract" autofocus><span aria-hidden="true">×</span></button>
     </div>
-    <div class="abstract-body" role="region" aria-label="Abstract text" tabindex="0" aria-busy="false">
+    <div class="dialog-body" role="region" aria-label="Abstract text" tabindex="0" aria-busy="false">
       <p id="abstract-status" role="status"></p>
       <div id="abstract-copy" hidden></div>
     </div>
-    <div class="abstract-footer">
+    <div class="dialog-footer">
       <a id="abstract-paper-link" target="_blank" rel="noopener">Read full paper <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+    </div>
+  </dialog>
+
+  <dialog id="transcript-dialog" class="content-dialog transcript-dialog" aria-labelledby="transcript-title" aria-describedby="transcript-description">
+    <div class="dialog-header">
+      <div><p class="eyebrow">Undergraduate transcript</p><h2 id="transcript-title">BS Computer Science</h2><p class="transcript-school">NUST, Islamabad · 2022–2026</p></div>
+      <button class="dialog-close" type="button" aria-label="Close transcript" autofocus><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="dialog-body transcript-body" role="region" aria-label="Transcript courses and grades" tabindex="0">
+      <dl class="transcript-summary">
+        <div><dt>CGPA</dt><dd>3.64 <small>/ 4.00</small></dd></div>
+        <div><dt>Earned credits</dt><dd>132</dd></div>
+        <div><dt>Degree awarded</dt><dd><time datetime="2026-06-05">5 June 2026</time></dd></div>
+      </dl>
+      <p id="transcript-description" class="transcript-note">Courses and grades transcribed from my official NUST transcript, issued on 26 October 2026.</p>
+      <div class="transcript-terms">
+        <section class="transcript-term" aria-labelledby="term-1">
+          <div class="transcript-term-heading">
+            <h3 id="term-1">1st Semester</h3>
+            <p>12 September 2022 - 13 January 2023</p>
+          </div>
+          <table class="transcript-table">
+            <caption class="sr-only">Courses and grades for 1st Semester</caption>
+            <thead><tr><th scope="col">Course</th><th scope="col">Credits</th><th scope="col">Grade</th><th scope="col">Grade<br>points</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><span class="course-code">CS-100</span>Fundamentals of ICT</th><td>3.0</td><td><span class="course-grade">B+</span></td><td>10.50</td></tr>
+              <tr><th scope="row"><span class="course-code">CS-110</span>Fundamentals of Computer Programming</th><td>4.0</td><td><span class="course-grade">B+</span></td><td>14.00</td></tr>
+              <tr><th scope="row"><span class="course-code">HU-107</span>Pakistan Studies</th><td>2.0</td><td><span class="course-grade">B+</span></td><td>7.00</td></tr>
+              <tr><th scope="row"><span class="course-code">HU-108</span>Communication and Interpersonal Skills</th><td>3.0</td><td><span class="course-grade">B+</span></td><td>10.50</td></tr>
+              <tr><th scope="row"><span class="course-code">MATH-162</span>Pre-Mathematics-I - Additional</th><td>3.0</td><td><span class="course-grade">Q</span></td><td><span aria-label="Not reported">—</span></td></tr>
+              <tr><th scope="row"><span class="course-code">MATH-163</span>Pre-Mathematics-II - Additional</th><td>3.0</td><td><span class="course-grade">Q</span></td><td><span aria-label="Not reported">—</span></td></tr>
+            </tbody>
+          </table>
+          <p class="transcript-term-total"><span>Semester credits: <strong>12.00</strong></span><span>Semester GPA: <strong>3.50</strong></span></p>
+        </section>
+        <section class="transcript-term" aria-labelledby="term-2">
+          <div class="transcript-term-heading">
+            <h3 id="term-2">2nd Semester</h3>
+            <p>30 January 2023 - 02 June 2023</p>
+          </div>
+          <table class="transcript-table">
+            <caption class="sr-only">Courses and grades for 2nd Semester</caption>
+            <thead><tr><th scope="col">Course</th><th scope="col">Credits</th><th scope="col">Grade</th><th scope="col">Grade<br>points</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><span class="course-code">CS-212</span>Object Oriented Programming</th><td>4.0</td><td><span class="course-grade">A</span></td><td>16.00</td></tr>
+              <tr><th scope="row"><span class="course-code">EE-221</span>Digital Logic Design</th><td>4.0</td><td><span class="course-grade">B+</span></td><td>14.00</td></tr>
+              <tr><th scope="row"><span class="course-code">FIN-100</span>Principles of Accounting</th><td>3.0</td><td><span class="course-grade">B+</span></td><td>10.50</td></tr>
+              <tr><th scope="row"><span class="course-code">HU-101</span>Islamic Studies</th><td>2.0</td><td><span class="course-grade">A</span></td><td>8.00</td></tr>
+              <tr><th scope="row"><span class="course-code">MATH-111</span>Calculus-I</th><td>3.0</td><td><span class="course-grade">B+</span></td><td>10.50</td></tr>
+              <tr><th scope="row"><span class="course-code">PHY-102</span>Applied Physics</th><td>3.0</td><td><span class="course-grade">A</span></td><td>12.00</td></tr>
+            </tbody>
+          </table>
+          <p class="transcript-term-total"><span>Cumulative credits: <strong>31.00</strong></span><span>CGPA: <strong>3.65</strong></span></p>
+        </section>
+        <section class="transcript-term" aria-labelledby="term-3">
+          <div class="transcript-term-heading">
+            <h3 id="term-3">Summer Semester 2023</h3>
+            <p>19 June 2023 - 18 August 2023</p>
+          </div>
+          <table class="transcript-table">
+            <caption class="sr-only">Courses and grades for Summer Semester 2023</caption>
+            <thead><tr><th scope="col">Course</th><th scope="col">Credits</th><th scope="col">Grade</th><th scope="col">Grade<br>points</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><span class="course-code">MATH-112</span>Calculus-II</th><td>3.0</td><td><span class="course-grade">A</span></td><td>12.00</td></tr>
+              <tr><th scope="row"><span class="course-code">MATH-161</span>Discrete Mathematics</th><td>3.0</td><td><span class="course-grade">B+</span></td><td>10.50</td></tr>
+            </tbody>
+          </table>
+          <p class="transcript-term-total"><span>Cumulative credits: <strong>37.00</strong></span><span>CGPA: <strong>3.66</strong></span></p>
+        </section>
+        <section class="transcript-term" aria-labelledby="term-4">
+          <div class="transcript-term-heading">
+            <h3 id="term-4">3rd Semester</h3>
+            <p>11 September 2023 - 12 January 2024</p>
+          </div>
+          <table class="transcript-table">
+            <caption class="sr-only">Courses and grades for 3rd Semester</caption>
+            <thead><tr><th scope="col">Course</th><th scope="col">Credits</th><th scope="col">Grade</th><th scope="col">Grade<br>points</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><span class="course-code">CS-220</span>Database Systems</th><td>4.0</td><td><span class="course-grade">B+</span></td><td>14.00</td></tr>
+              <tr><th scope="row"><span class="course-code">CS-235</span>Computer Organization &amp; Assembly Language</th><td>4.0</td><td><span class="course-grade">B+</span></td><td>14.00</td></tr>
+              <tr><th scope="row"><span class="course-code">CS-250</span>Data Structures &amp; Algorithms</th><td>4.0</td><td><span class="course-grade">A</span></td><td>16.00</td></tr>
+              <tr><th scope="row"><span class="course-code">HU-212</span>Technical &amp; Business Writing</th><td>2.0</td><td><span class="course-grade">A</span></td><td>8.00</td></tr>
+              <tr><th scope="row"><span class="course-code">MATH-222</span>Linear Algebra</th><td>3.0</td><td><span class="course-grade">B+</span></td><td>10.50</td></tr>
+            </tbody>
+          </table>
+          <p class="transcript-term-total"><span>Cumulative credits: <strong>54.00</strong></span><span>CGPA: <strong>3.67</strong></span></p>
+        </section>
+        <section class="transcript-term" aria-labelledby="term-5">
+          <div class="transcript-term-heading">
+            <h3 id="term-5">4th Semester</h3>
+            <p>29 January 2024 - 31 May 2024</p>
+          </div>
+          <table class="transcript-table">
+            <caption class="sr-only">Courses and grades for 4th Semester</caption>
+            <thead><tr><th scope="col">Course</th><th scope="col">Credits</th><th scope="col">Grade</th><th scope="col">Grade<br>points</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><span class="course-code">CS-251</span>Design &amp; Analysis of Algorithm</th><td>3.0</td><td><span class="course-grade">B</span></td><td>9.00</td></tr>
+              <tr><th scope="row"><span class="course-code">CS-330</span>Operating Systems</th><td>4.0</td><td><span class="course-grade">A</span></td><td>16.00</td></tr>
+              <tr><th scope="row"><span class="course-code">CS-344</span>Web Engineering</th><td>4.0</td><td><span class="course-grade">B+</span></td><td>14.00</td></tr>
+              <tr><th scope="row"><span class="course-code">MATH-108</span>Differential Equations</th><td>3.0</td><td><span class="course-grade">B+</span></td><td>10.50</td></tr>
+              <tr><th scope="row"><span class="course-code">MATH-361</span>Probability &amp; Statistics</th><td>3.0</td><td><span class="course-grade">A</span></td><td>12.00</td></tr>
+            </tbody>
+          </table>
+          <p class="transcript-term-total"><span>Cumulative credits: <strong>71.00</strong></span><span>CGPA: <strong>3.65</strong></span></p>
+        </section>
+        <section class="transcript-term" aria-labelledby="term-6">
+          <div class="transcript-term-heading">
+            <h3 id="term-6">5th Semester</h3>
+            <p>09 September 2024 - 12 January 2025</p>
+          </div>
+          <table class="transcript-table">
+            <caption class="sr-only">Courses and grades for 5th Semester</caption>
+            <thead><tr><th scope="col">Course</th><th scope="col">Credits</th><th scope="col">Grade</th><th scope="col">Grade<br>points</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><span class="course-code">CS-370</span>Artificial Intelligence</th><td>4.0</td><td><span class="course-grade">A</span></td><td>16.00</td></tr>
+              <tr><th scope="row"><span class="course-code">CS-471</span>Machine Learning</th><td>4.0</td><td><span class="course-grade">B</span></td><td>12.00</td></tr>
+              <tr><th scope="row"><span class="course-code">EE-353</span>Computer Networks</th><td>4.0</td><td><span class="course-grade">A</span></td><td>16.00</td></tr>
+              <tr><th scope="row"><span class="course-code">MGT-111</span>Technology In Business</th><td>2.0</td><td><span class="course-grade">B+</span></td><td>7.00</td></tr>
+              <tr><th scope="row"><span class="course-code">SE-200</span>Software Engineering</th><td>3.0</td><td><span class="course-grade">A</span></td><td>12.00</td></tr>
+            </tbody>
+          </table>
+          <p class="transcript-term-total"><span>Cumulative credits: <strong>88.00</strong></span><span>CGPA: <strong>3.66</strong></span></p>
+        </section>
+        <section class="transcript-term" aria-labelledby="term-7">
+          <div class="transcript-term-heading">
+            <h3 id="term-7">6th Semester</h3>
+            <p>27 January 2025 - 01 June 2025</p>
+          </div>
+          <table class="transcript-table">
+            <caption class="sr-only">Courses and grades for 6th Semester</caption>
+            <thead><tr><th scope="col">Course</th><th scope="col">Credits</th><th scope="col">Grade</th><th scope="col">Grade<br>points</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><span class="course-code">CS-405</span>Deep Learning</th><td>4.0</td><td><span class="course-grade">B+</span></td><td>14.00</td></tr>
+              <tr><th scope="row"><span class="course-code">CS-432</span>Parallel &amp; Distributed Computing</th><td>4.0</td><td><span class="course-grade">B+</span></td><td>14.00</td></tr>
+              <tr><th scope="row"><span class="course-code">CS-481</span>Information Security</th><td>3.0</td><td><span class="course-grade">B+</span></td><td>10.50</td></tr>
+              <tr><th scope="row"><span class="course-code">HU-223</span>Professional Ethics</th><td>3.0</td><td><span class="course-grade">B+</span></td><td>10.50</td></tr>
+              <tr><th scope="row"><span class="course-code">MATH-352</span>Numerical Methods</th><td>3.0</td><td><span class="course-grade">B</span></td><td>9.00</td></tr>
+            </tbody>
+          </table>
+          <p class="transcript-term-total"><span>Cumulative credits: <strong>105.00</strong></span><span>CGPA: <strong>3.62</strong></span></p>
+        </section>
+        <section class="transcript-term" aria-labelledby="term-8">
+          <div class="transcript-term-heading">
+            <h3 id="term-8">Summer Semester 2025</h3>
+            <p>23 June 2025 - 24 August 2025</p>
+          </div>
+          <table class="transcript-table">
+            <caption class="sr-only">Courses and grades for Summer Semester 2025</caption>
+            <thead><tr><th scope="col">Course</th><th scope="col">Credits</th><th scope="col">Grade</th><th scope="col">Grade<br>points</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><span class="course-code">CS-471</span>Machine Learning - Repeated</th><td><span aria-label="Not reported">—</span></td><td><span class="course-grade">B</span></td><td><span aria-label="Not reported">—</span></td></tr>
+            </tbody>
+          </table>
+          <p class="transcript-term-total"><span>Cumulative credits: <strong>105.00</strong></span><span>CGPA: <strong>3.62</strong></span></p>
+        </section>
+        <section class="transcript-term" aria-labelledby="term-9">
+          <div class="transcript-term-heading">
+            <h3 id="term-9">7th Semester</h3>
+            <p>08 September 2025 - 04 January 2026</p>
+          </div>
+          <table class="transcript-table">
+            <caption class="sr-only">Courses and grades for 7th Semester</caption>
+            <thead><tr><th scope="col">Course</th><th scope="col">Credits</th><th scope="col">Grade</th><th scope="col">Grade<br>points</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><span class="course-code">CS-352</span>Theo of Automata &amp; Formal Lang</th><td>3.0</td><td><span class="course-grade">B+</span></td><td>10.50</td></tr>
+              <tr><th scope="row"><span class="course-code">CS-417</span>Large Language Models</th><td>3.0</td><td><span class="course-grade">B+</span></td><td>10.50</td></tr>
+              <tr><th scope="row"><span class="course-code">CS-498</span>Final Year Project-I</th><td>2.0</td><td><span class="course-grade">A</span></td><td>8.00</td></tr>
+              <tr><th scope="row"><span class="course-code">HU-102</span>Psychology</th><td>3.0</td><td><span class="course-grade">B+</span></td><td>10.50</td></tr>
+              <tr><th scope="row"><span class="course-code">MGT-272</span>Entrepreneurship</th><td>3.0</td><td><span class="course-grade">A</span></td><td>12.00</td></tr>
+            </tbody>
+          </table>
+          <p class="transcript-term-total"><span>Cumulative credits: <strong>119.00</strong></span><span>CGPA: <strong>3.63</strong></span></p>
+        </section>
+        <section class="transcript-term" aria-labelledby="term-10">
+          <div class="transcript-term-heading">
+            <h3 id="term-10">8th Semester</h3>
+            <p>19 January 2026 - 24 May 2026</p>
+          </div>
+          <table class="transcript-table">
+            <caption class="sr-only">Courses and grades for 8th Semester</caption>
+            <thead><tr><th scope="col">Course</th><th scope="col">Credits</th><th scope="col">Grade</th><th scope="col">Grade<br>points</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><span class="course-code">CS-351</span>Compiler Construction</th><td>3.0</td><td><span class="course-grade">B</span></td><td>9.00</td></tr>
+              <tr><th scope="row"><span class="course-code">CS-499</span>Final Year Project-II</th><td>4.0</td><td><span class="course-grade">A</span></td><td>16.00</td></tr>
+              <tr><th scope="row"><span class="course-code">CSL-402</span>Community Service Learning Course - Additional</th><td>1.0</td><td><span class="course-grade">Q</span></td><td><span aria-label="Not reported">—</span></td></tr>
+              <tr><th scope="row"><span class="course-code">ECO-132</span>Engineering Economics</th><td>3.0</td><td><span class="course-grade">A</span></td><td>12.00</td></tr>
+              <tr><th scope="row"><span class="course-code">HU-115</span>Principles of Sociology</th><td>3.0</td><td><span class="course-grade">A</span></td><td>12.00</td></tr>
+            </tbody>
+          </table>
+          <p class="transcript-term-total"><span>Cumulative credits: <strong>132.00</strong></span><span>CGPA: <strong>3.64</strong></span></p>
+        </section>
+      </div>
+      <div class="transcript-legend">
+        <h3>Reading the grades</h3>
+        <p>A = 4.00 · B+ = 3.50 · B = 3.00 · Q = Qualified</p>
+        <p>Grade points are the course credits multiplied by the numerical grade. Additional qualifying courses are excluded from the CGPA. A dash means no value was reported in the transcript.</p>
+      </div>
+    </div>
+    <div class="dialog-footer transcript-footer">
+      <a class="button primary" href="https://onlineverification.nust.edu.pk/mvdoc.aspx" target="_blank" rel="noopener">Verify with NUST <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+      <p>Enter document ID <strong>B4098402676</strong> on the verification page.</p>
     </div>
   </dialog>
 

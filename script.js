@@ -124,9 +124,32 @@ if (educationList && educationControls) {
   updateEducationControls();
 }
 
+function setupDialogDismissal(dialog) {
+  dialog.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', event => {
+    const box = dialog.getBoundingClientRect();
+    const outside = event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom;
+    if (event.target === dialog && outside) dialog.close();
+  });
+  dialog.addEventListener('close', () => document.body.classList.remove('dialog-open'));
+}
+
+const transcriptDialog = document.querySelector('#transcript-dialog');
+const transcriptButton = document.querySelector('.transcript-button');
+
+if (typeof transcriptDialog.showModal === 'function') {
+  transcriptButton.hidden = false;
+  transcriptButton.addEventListener('click', () => {
+    transcriptDialog.showModal();
+    transcriptDialog.querySelector('.dialog-body').scrollTop = 0;
+    document.body.classList.add('dialog-open');
+  });
+  setupDialogDismissal(transcriptDialog);
+}
+
 const abstractDialog = document.querySelector('#abstract-dialog');
 const abstractTitle = document.querySelector('#abstract-title');
-const abstractBody = abstractDialog.querySelector('.abstract-body');
+const abstractBody = abstractDialog.querySelector('.dialog-body');
 const abstractStatus = document.querySelector('#abstract-status');
 const abstractCopy = document.querySelector('#abstract-copy');
 const abstractPaperLink = document.querySelector('#abstract-paper-link');
@@ -160,7 +183,7 @@ async function openAbstract(button) {
   abstractStatus.textContent = 'Loading abstract…';
   abstractBody.setAttribute('aria-busy', 'true');
   abstractBody.scrollTop = 0;
-  document.body.classList.add('abstract-open');
+  document.body.classList.add('dialog-open');
   abstractDialog.showModal();
   try {
     const data = await loadAbstracts();
@@ -190,15 +213,9 @@ if (typeof abstractDialog.showModal === 'function') {
     button.hidden = false;
     button.addEventListener('click', () => openAbstract(button));
   });
-  abstractDialog.querySelector('.abstract-close').addEventListener('click', () => abstractDialog.close());
-  abstractDialog.addEventListener('click', event => {
-    const box = abstractDialog.getBoundingClientRect();
-    const outside = event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom;
-    if (event.target === abstractDialog && outside) abstractDialog.close();
-  });
+  setupDialogDismissal(abstractDialog);
   abstractDialog.addEventListener('close', () => {
     activeAbstract += 1;
-    document.body.classList.remove('abstract-open');
   });
 }
 
